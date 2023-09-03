@@ -1,0 +1,9 @@
+<%- include('header') %>
+    <div class="container">
+        <div class="container text-center main pb-5">
+            <h1 class="pt-3 pb-3">Welcome <%= locals.user?user:'Error' %></h1>
+            <a href="/route/logout" class="btn btn-outline-danger rounded-pill">Logout</a>
+        </div>
+    </div>
+
+<%- include('footer') %>
