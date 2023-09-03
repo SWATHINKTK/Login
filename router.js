@@ -3,7 +3,7 @@ const router = express.Router();
 const nocache = require('nocache');
 
 
-router.use('/login', nocache());
+
 
 const login_data = {
     username : "admin@gmail.com",
@@ -11,17 +11,16 @@ const login_data = {
 };
 
 
-  
-
-router.post('/login' , (req,res) => {
+router.post('/login',(req,res) => {
     if(login_data.username == req.body.username && login_data.password == req.body.password)
     {
         req.session.user = req.body.username;
+        // res.cookie('username',req.body.username)
         res.redirect('/route/logged');
     }
     else
     {
-        res.render('main',{title:'login',data:"invalid Entry"})
+        res.render('main',{title:'login',data:"invalid User"})
     }
 } );
 
@@ -34,7 +33,7 @@ router.get('/logged', (req,res) => {
 });
 
 
-router.get('/logout', (req,res) => {
+router.post('/logout',(req,res) => {
     req.session.destroy((err) => {
         if(err)
         {
@@ -48,6 +47,7 @@ router.get('/logout', (req,res) => {
     });
 
 });
+
 
 
 router.get('/*', (req,res) => {

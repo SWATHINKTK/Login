@@ -1,2 +1,25 @@
+<script>
+    function validate()
+    {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        if(username == "" || username == null )
+        {
+            document.getElementById('user_valid').innerHTML = "*enter field";
+        }
+        else
+        {
+             document.getElementById('user_valid').innerHTML = "";
+        }
+        if(password == "" || password == null)
+        {
+            document.getElementById('pass_valid').innerHTML = "*enter field";
+        }
+        else
+        {
+             document.getElementById('pass_valid').innerHTML = "";
+        }
+    }
+</script>
 </body>
 </html>
