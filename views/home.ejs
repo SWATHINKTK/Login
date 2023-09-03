@@ -2,9 +2,10 @@
     <div class="container">
         <div class="container text-center main pb-5">
             <h1 class="pt-3 pb-3">Welcome <%= locals.user?user:'Error' %></h1>
-            <form action="/route/logout" method="POST">
+            <input type="button" value="Logout" class="btn btn-outline-danger rounded-pill" id="logout">
+            <!-- <form action="/route/logout" method="POST">
                 <button type="submit" class="btn btn-outline-danger rounded-pill">Logout</button>
-            </form>
+            </form> -->
             
         </div>
     </div>

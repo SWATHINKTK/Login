@@ -1,39 +1,49 @@
 const express = require('express');
-const router = express.Router();
 const nocache = require('nocache');
+const router = express.Router();
 
-
+router.use(nocache());
 
 
 const login_data = {
     username : "admin@gmail.com",
-    password : 1234
+    password : "Abc@2"
 };
 
-
+//login Route
 router.post('/login',(req,res) => {
-    if(login_data.username == req.body.username && login_data.password == req.body.password)
+
+    try
     {
-        req.session.user = req.body.username;
-        // res.cookie('username',req.body.username)
-        res.redirect('/route/logged');
+        if(login_data.username == req.body.username && login_data.password == req.body.password)
+        {
+            req.session.user = req.body.username;
+            // res.cookie('username',req.body.username)
+            res.redirect('/route/home');
+        }
+        else
+        {
+            res.render('main',{title:'login',data:"invalid User"});
+        }
     }
-    else
+    catch(err)
     {
-        res.render('main',{title:'login',data:"invalid User"})
+        console.log(err);
+        res.status(400).send("Server error")
     }
 } );
 
 
-router.get('/logged', (req,res) => {
+//home Route
+router.get('/home', (req,res) => {
     if(req.session.user)
     {
-        res.render('logged',{title:'swathin',user:req.session.user});
+        res.render('home',{title:'admin',user:req.session.user});
     }
 });
 
 
-router.post('/logout',(req,res) => {
+router.get('/logout',nocache(),(req,res) => {
     req.session.destroy((err) => {
         if(err)
         {
@@ -42,7 +52,8 @@ router.post('/logout',(req,res) => {
         }
         else
         {
-            res.render('main',{title:"login",data:"Logout Sucessfull"})
+            // res.render('main',{title:"login",data:"Logout Sucessfull"});
+            res.redirect('/');
         }
     });
 
@@ -51,7 +62,7 @@ router.post('/logout',(req,res) => {
 
 
 router.get('/*', (req,res) => {
-    res.writeHead(404)
+    res.writeHead(500)
     res.send("Url is Note Working");
 });
 

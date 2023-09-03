@@ -10,10 +10,14 @@ body{
 .main{
     margin-top: 12rem;
     background-color: rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 4px 4px 0 rgba(177, 177, 177, 0.33), 0 4px 4px 0 rgba(180, 180, 180, 0.297); */
 }
 .type_hint{
     font-size: 14px;
     color:rgba(255, 255, 255, 0.3);
+}
+.valid{
+    font-size: 14px;
 }
 .login
 {
