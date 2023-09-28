@@ -37,12 +37,24 @@ app.get('/',(req, res) => {
     if(req.session.user)
     {
         res.redirect('/route/home');
+        res.end();
     }
     else
     {
         res.render('main', { title: "Login page" });
     }
 });
+
+
+app.get('*',(req,res)=>{
+    if(req.session.user){
+        res.redirect('/route/home');
+        res.end();
+    }else{
+        res.redirect('/');
+        res.end();
+    }
+})
 
 app.listen(Port, Hostname, () => {
     console.log(`Server is running on http://${Hostname}:${Port}/`)
